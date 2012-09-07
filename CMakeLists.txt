@@ -1,4 +1,4 @@
-project(MLP)
+project(QNeuralNet)
 
 cmake_minimum_required( VERSION 2.6 )
 set ( CMAKE_BUILD_TYPE Release )
@@ -14,36 +14,36 @@ include_directories (${CMAKE_SOURCE_DIR}
                      ${QT_QTNETWORK_INCLUDE_DIR}
 )
 
-set (MLP_SRCS race-client.cpp
+set (QNN_SRCS race-client.cpp
      neuron.cpp
      network.cpp
      main.cpp
      mainwindow.cpp
 )
 
-set (MLP_UIS
+set (QNN_UIS
      mainwindow.ui
 )
 
-QT4_WRAP_UI(UIS ${MLP_UIS})
+QT4_WRAP_UI(UIS ${QNN_UIS})
 
-set (MLP_MOCS
+set (QNN_MOCS
      mainwindow.h
      network.h
      race-client.h
 )
 
-QT4_WRAP_CPP(MOCS ${MLP_MOCS})
+QT4_WRAP_CPP(MOCS ${QNN_MOCS})
 
-add_executable (MLP
-                ${MLP_SRCS}
+add_executable (qneuralnet
+                ${QNN_SRCS}
                 ${UIS}
                 ${RSCS}
                 ${TRS}
                 ${MOCS}
 )
 
-target_link_libraries (MLP
+target_link_libraries (qneuralnet
                        ${QT_QTCORE_LIBRARY}
                        ${QT_QTGUI_LIBRARY}
                        ${QT_QTNETWORK_LIBRARY}
