@@ -1,0 +1,38 @@
+#Multilayer network
+
+#Layer count
+3
+#Inputs count
+5
+#Inputs description with min max values
+input1 -12.5 40
+input2 0 0.5
+input3 -1000 1000
+input4 -1000 1000
+input5 -1000 1000
+
+#Number of neurons in each layer (excluding input layer, that's the "Inputs count")
+4 3 2
+
+#Output description
+output1
+output2
+
+#Learning coefficient
+0.4
+
+#Momentum
+0.1
+
+#Training set
+
+#Items in training set
+2
+#Training set items, one line is one set, last N items are expected network outputs (where N is neuron count in last/output layer)
+-12.5 0 -1000 -1000 -1000 0 1
+40 0.5 1000 1000 1000 1 0
+
+#Testing inputs to test how well is the network trained
+#Number of inputs
+1
+10 0.3 50 20 -30
