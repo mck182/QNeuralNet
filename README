@@ -1,0 +1,61 @@
+Qt Backpropagation Neural Network
+=================================
+
+Basic implementation of backpropagation neural network written in Qt for uni project.
+Licenced under GPLv3.
+
+The original design was done by Chesnokov Yuriy in his C++ implementation
+over at CodeProject.com. The network can contain arbitrary number of layers
+and each layer can have arbitrary number of neurons. However the implementation
+uses only feed-forward each-to-each connection between the neurons.
+
+The example UI is probably confusing and not intuitive at all, but it was done
+only to demonstrate the network capabilities to the teacher,so take it as that.
+
+
+How to use
+==========
+
+All the network logic is implemented in network.cpp and neuron.cpp, mainwindow.cpp
+and race-client.cpp then contain examples of usage.
+
+The code contains three example of setting and using the network. First one shows
+number recognition 5x5 raster, where all the network initialization is done in
+the code, including the training set (see MainWindow::recognizeNumber() method).
+
+Second example features loading the network data from files (example file included).
+The parsing is super-shitty, but...meh, good enough :)
+
+The third example was an actual assignment, which was to train a race car, that can
+follow supplied path. Basically we had to implement a race client that connects to
+a race server, where bunch of neural-net-trained cars can race against each other.
+Unfortunately I can't distribute the server nor the access to the public server,
+so the client implementation will have to do.
+
+Setting the network is as easy as
+
+	m_network = new Network(QList<int>() << 25 << 18 << 8 << 4, 0.8f, 0.1f, 0.05f);
+
+which will create a network with 4 layers (25 input neurons, 4 output), alpha = 0.8,
+learning rate = 0.1 and max allowed network error is 0.05.
+
+Training the network is also easy:
+
+	m_network->trainSet(trainSet, outputs);
+
+where trainSet is QList<QList<float> > (each 'inner' list is one training set)
+and outputs is the expected outputs for the train set, same as the
+trainSet - QList<QList<float> >. If the network was trained successfully, trainSet(..)
+returns true, otherwise false.
+
+Running the network on data is done by
+
+	QList<float> *netOutputs = m_network->run(runset);
+
+where runset is one set of data, ie. QList<float>. This returns list with network
+outputs on the given set.
+
+The code is hosted on github under GPLv3, so feel free to clone it, use it, share it,
+improve it, just keep the copyrights in place and follow the licence.
+
+https://github.com/mck182/QNeuralNet
